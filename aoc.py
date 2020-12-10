@@ -1,8 +1,4 @@
 import argparse
-import os
-import os.path
-
-
 import days
 
 if __name__ == '__main__':
@@ -19,7 +15,10 @@ if __name__ == '__main__':
         day = days.load_day(args.day)
         if hasattr(day, 'solve_part1'):
             print(day.solve_part1(inp))
-        
+
         if hasattr(day, 'solve_part2'):
             print(day.solve_part2(inp))
+
+    elif args.command == 'fetch':
+        days.fetch_input(args.day, True)
 
