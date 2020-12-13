@@ -3,7 +3,7 @@ import days
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('command', choices=['run', 'fetch'])
+    parser.add_argument('command', choices=['dump', 'fetch', 'run'])
     parser.add_argument('day', type=int, choices=range(1,26),
         help='Solve day number N')
 
@@ -21,4 +21,7 @@ if __name__ == '__main__':
 
     elif args.command == 'fetch':
         days.fetch_input(args.day, True)
+
+    elif args.command == 'dump':
+        days.dump_input(args.day)
 

@@ -34,6 +34,12 @@ def get_input(day):
     with open(input_file, 'rt') as input_handle:
         return input_handle.read()
 
+def dump_input(day):
+    fetch_input(day)
+    inp = get_input(day)
+    for line in inp.splitlines():
+        print(line)
+
 def load_day(day):
     module_name = f'days.day{day}'
     module = importlib.import_module(module_name)
