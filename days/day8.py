@@ -40,7 +40,7 @@ class Console:
         return opcode, int(arg)
 
 
-def solve_part1(inp):
+def part1(inp):
     console = Console(inp)
 
     trace = []
@@ -52,7 +52,7 @@ def solve_part1(inp):
         console.step()
 
 
-def solve_part2(inp):
+def part2(inp):
     console = Console(inp)
 
     for addr in range(len(console.code)):

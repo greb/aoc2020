@@ -38,13 +38,13 @@ def cycle(cubes):
 
     return new_cubes
 
-def solve_part1(inp):
+def part1(inp):
     cubes = parse(inp, 3)
     for _ in range(6):
         cubes = cycle(cubes)
     return len(cubes)
 
-def solve_part2(inp):
+def part2(inp):
     cubes = parse(inp, 4)
     for _ in range(6):
         cubes = cycle(cubes)

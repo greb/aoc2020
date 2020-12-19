@@ -5,7 +5,7 @@ def parse(inp):
     buses = list(inp[1].split(','))
     return timestamp, buses
 
-def solve_part1(inp):
+def part1(inp):
     timestamp, buses = parse(inp)
     buses = [int(bus) for bus in buses if bus != 'x']
 
@@ -13,7 +13,7 @@ def solve_part1(inp):
     return (earliest[0]-timestamp) * earliest[1]
 
 
-def solve_part2(inp):
+def part2(inp):
     _, buses = parse(inp)
     offsets = [(i, int(bus)) for i,bus in enumerate(buses) if bus != 'x']
 

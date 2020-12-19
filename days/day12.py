@@ -29,7 +29,7 @@ def turn_waypoint(pos, action, value):
     return x, y
 
 
-def solve_part1(inp):
+def part1(inp):
     ship_dir = 'E'
     ship_pos = (0,0)
 
@@ -47,7 +47,7 @@ def solve_part1(inp):
     return abs(ship_pos[0]) + abs(ship_pos[1])
 
 
-def solve_part2(inp):
+def part2(inp):
     ship_pos = (0,0)
     waypoint_pos = (10, -1)
 

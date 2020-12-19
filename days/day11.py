@@ -71,7 +71,7 @@ class Layout:
         return change_cnt
 
 
-def solve_part1(inp):
+def part1(inp):
     layout = Layout(inp)
 
     while True:
@@ -82,7 +82,7 @@ def solve_part1(inp):
     return layout.count_occupied()
 
 
-def solve_part2(inp):
+def part2(inp):
     layout = Layout(inp)
 
     while True:

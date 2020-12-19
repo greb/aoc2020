@@ -32,12 +32,12 @@ def check_msg(msg, check, rules):
                 return True
         return False
 
-def solve_part1(inp):
+def part1(inp):
     rules, msgs = parse(inp)
     return sum(check_msg(msg, [0], rules) for msg in msgs)
 
 
-def solve_part2(inp):
+def part2(inp):
     rules, msgs = parse(inp)
     rules[8] = [[42], [42, 8]]
     rules[11] = [[42, 31], [42, 11, 31]]

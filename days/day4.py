@@ -21,7 +21,7 @@ def parse(inp):
             passport.update(items)
     yield passport
 
-def solve_part1(inp):
+def part1(inp):
     valid_cnt = 0
 
     passports = parse(inp)
@@ -31,7 +31,7 @@ def solve_part1(inp):
     return valid_cnt
 
 
-def solve_part2(inp):
+def part2(inp):
     valid_cnt = 0
 
     passports = parse(inp)

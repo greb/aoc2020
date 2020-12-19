@@ -7,7 +7,7 @@ def validate_num(num, pre):
     return False
 
 
-def solve_part1(inp):
+def part1(inp):
     inp = [int(line) for line in inp.splitlines()]
 
     for i, num in enumerate(inp[25:]):
@@ -15,8 +15,8 @@ def solve_part1(inp):
         if not validate_num(num, pre):
             return num
 
-def solve_part2(inp):
-    target = solve_part1(inp)
+def part2(inp):
+    target = part1(inp)
     inp = [int(line) for line in inp.splitlines()]
 
     for i in range(len(inp)):

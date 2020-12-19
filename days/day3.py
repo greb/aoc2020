@@ -18,12 +18,12 @@ def count_trees(inp, sx, sy):
     return tree_cnt
 
 
-def solve_part1(inp):
+def part1(inp):
     inp = parse(inp)
     return count_trees(inp, 3, 1)
 
 
-def solve_part2(inp):
+def part2(inp):
     inp = parse(inp)
 
     tree_cnt = 1

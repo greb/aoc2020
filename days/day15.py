@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-def solve_part1(inp):
+def part1(inp):
     nums = [int(n) for n in inp.split(',')]
 
     memory = {}
@@ -18,7 +18,7 @@ def solve_part1(inp):
     return spoken
 
 
-def solve_part2(inp):
+def part2(inp):
     nums = [int(n) for n in inp.split(',')]
 
     memory = {}

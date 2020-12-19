@@ -1,4 +1,4 @@
-def solve_part1(inp):
+def part1(inp):
     entries = sorted(int(e) for e in inp.split())
 
     for i, a in enumerate(entries):
@@ -6,7 +6,7 @@ def solve_part1(inp):
             if a+b == 2020:
                 return a*b
 
-def solve_part2(inp):
+def part2(inp):
     entries = sorted(int(e) for e in inp.split())
 
     for i, a in enumerate(entries):

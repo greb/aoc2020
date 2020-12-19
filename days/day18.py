@@ -79,13 +79,13 @@ def evaluate(expr, pred=None):
 
     return vals.pop()
 
-def solve_part1(inp):
+def part1(inp):
     total = 0
     for line in inp.splitlines():
         total += evaluate(line)
     return total
 
-def solve_part2(inp):
+def part2(inp):
     pred = {'+': 1, '*': 0}
     total = 0
     for line in inp.splitlines():

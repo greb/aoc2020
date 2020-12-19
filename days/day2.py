@@ -4,7 +4,7 @@ def parse(inp):
     pattern = re.compile(r'(\d*)-(\d*) (.): (.*)')
     return pattern.findall(inp)
 
-def solve_part1(inp):
+def part1(inp):
     inp = parse(inp)
 
     correct_cnt = 0
@@ -19,7 +19,7 @@ def solve_part1(inp):
     return correct_cnt
 
 
-def solve_part2(inp):
+def part2(inp):
     inp = parse(inp)
 
     correct_cnt = 0

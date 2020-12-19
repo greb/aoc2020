@@ -32,7 +32,7 @@ def ticket_errors(rules, ticket):
     return errors
 
 
-def solve_part1(inp):
+def part1(inp):
     rules, tickets = parse(inp)
 
     errors = 0
@@ -42,7 +42,7 @@ def solve_part1(inp):
     return errors
 
 
-def solve_part2(inp):
+def part2(inp):
     rules, tickets = parse(inp)
 
     valids = []

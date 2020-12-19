@@ -76,7 +76,7 @@ def decode_addr(mask, n):
     return addrs
 
 
-def solve_part1(inp):
+def part1(inp):
     memory = {}
 
     for mask, mems in parse(inp):
@@ -85,7 +85,7 @@ def solve_part1(inp):
 
     return sum(memory.values())
 
-def solve_part2(inp):
+def part2(inp):
     memory = {}
 
     for mask, mems in parse(inp):

@@ -1,6 +1,6 @@
 import collections
 
-def solve_part1(inp):
+def part1(inp):
     adapters = [int(line) for line in inp.splitlines()]
     adapters = [0] + sorted(adapters) + [max(adapters)+3]
     diffs = [b-a for (a,b) in zip(adapters, adapters[1:])]
@@ -8,7 +8,7 @@ def solve_part1(inp):
     return diffs.count(1) * diffs.count(3)
 
 
-def solve_part2(inp):
+def part2(inp):
     adapters = [int(line) for line in inp.splitlines()]
     adapters = [0] + sorted(adapters) + [max(adapters)+3]
 

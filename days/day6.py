@@ -9,7 +9,7 @@ def parse_groups(inp):
     yield group
 
 
-def solve_part1(inp):
+def part1(inp):
     cnt = 0
 
     for group in parse_groups(inp):
@@ -19,7 +19,7 @@ def solve_part1(inp):
         cnt += len(ans)
     return cnt
 
-def solve_part2(inp):
+def part2(inp):
     cnt = 0
 
     for group in parse_groups(inp):

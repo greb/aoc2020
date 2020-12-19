@@ -17,7 +17,7 @@ def parse_rules(inp):
         rules[container] = bags
     return rules
 
-def solve_part1(inp):
+def part1(inp):
     rules = parse_rules(inp)
     stack = ['shiny gold']
     visited = set()
@@ -37,7 +37,7 @@ def solve_part1(inp):
     return cnt
 
 
-def solve_part2(inp):
+def part2(inp):
     rules = parse_rules(inp)
     stack = [(1, 'shiny gold')]
 

@@ -20,11 +20,11 @@ def parse(inp):
         seat_id = get_seat_id(row, col)
         yield seat_id
 
-def solve_part1(inp):
+def part1(inp):
     seat_ids = parse(inp)
     return max(seat_ids)
 
-def solve_part2(inp):
+def part2(inp):
     seat_ids = list(parse(inp))
     start = min(seat_ids)
     end = max(seat_ids)
