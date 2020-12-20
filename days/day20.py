@@ -25,18 +25,15 @@ def tile_border(tile):
     west  = ''.join(row[0] for row in tile)
     return [north, east, south, west]
 
-
 def tile_vflip(tile):
     return [''.join(reversed(row)) for row in tile]
 
 def tile_rotcw(tile):
     return [''.join(reversed(row)) for row in zip(*tile)]
 
-
-def tile_orientations(tile):
+def tile_transforms(tile):
     # Because of symmetries 4 rotations and 1 vert flip for each
-    # rotation is enough to get all orientations
-
+    # rotation is enough to get all transforms
     yield tile
     yield tile_vflip(tile)
 
@@ -45,61 +42,63 @@ def tile_orientations(tile):
         yield tile
         yield tile_vflip(tile)
 
-
 def tile_remove_border(tile):
     return [row[1:-1] for row in tile[1:-1]]
 
+def prepare_tiles(tiles):
+    prepared = {}
+    for num, tile in tiles.items():
+        tile_data = []
+        for transform in tile_transforms(tile):
+            border = tile_border(transform)
+            tile_data.append( (transform, border) )
+        prepared[num] = tile_data
+    return prepared
 
-def find_arrangement(tiles, size, arrangement=[], x=0, y=0, i=0):
-    ind = ' '*i
 
+def find_order(tiles, size, order=[], x=0, y=0):
     if y == size:
-        return arrangement
+        return order
 
     if x == size:
-        return find_arrangement(tiles, size,
-                arrangement, 0, y+1, i+1)
+        return find_order(tiles, size, order, 0, y+1)
 
-    canidates = []
-    for num, tile in tiles.items():
-        if num in (a[0] for a in arrangement):
+    matches = []
+    for num, tile_data in tiles.items():
+        if num in (a[0] for a in order):
             continue
 
-        for orientation in tile_orientations(tile):
-            idx = y*size + x
-
-            border = tile_border(orientation)
+        for transform, border in tile_data:
+            tile_index = y*size + x
 
             if x > 0:
                 # has left neighbor
-                neighbor_border = tile_border(arrangement[idx-1][1])
-                if border[3] != neighbor_border[1]:
+                _, _, n_border = order[tile_index - 1]
+                if border[3] != n_border[1]:
                     continue
 
             if y > 0:
                 # has top neighbor
-                neighbor_border = tile_border(arrangement[idx-size][1])
-                if border[0] != neighbor_border[2]:
+                _, _, n_border = order[tile_index - size]
+                if border[0] != n_border[2]:
                     continue
 
-            # valid orientation found
-            canidates.append((num, orientation))
+            matches.append( (num, transform, border) )
 
-    for canidate in canidates:
-        found = find_arrangement(tiles, size,
-                arrangement + [canidate], x+1, y, i+1)
+    for match in matches:
+        found = find_order(tiles, size, order + [match], x+1, y)
         if found:
             return found
 
     return None
 
 
-def corner_product(arrangement, size):
+def corner_product(order, size):
     prod = 1
     indices = [0, size-1, size*(size-1), (size-1*size-1)]
 
     for idx in indices:
-        prod *= arrangement[idx][0]
+        prod *= order[idx][0]
     return prod
 
 
@@ -107,13 +106,14 @@ def part1(inp):
     tiles = parse(inp)
 
     size = int(math.sqrt(len(tiles)))
-    arrangement = find_arrangement(tiles, size)
+    tiles = prepare_tiles(tiles)
+    order = find_order(tiles, size)
 
-    return corner_product(arrangement, size)
+    return corner_product(order, size)
 
 
-def generate_image(arrangement, size):
-    tiles = [tile_remove_border(a[1]) for a in arrangement]
+def generate_image(order, size):
+    tiles = [tile_remove_border(a[1]) for a in order]
     tile_size = len(tiles[0])
     rows  = []
 
@@ -156,10 +156,11 @@ def part2(inp):
     tiles = parse(inp)
 
     size = int(math.sqrt(len(tiles)))
-    arrangement = find_arrangement(tiles, size)
-    image = generate_image(arrangement, size)
+    tiles = prepare_tiles(tiles)
+    order = find_order(tiles, size)
+    image = generate_image(order, size)
 
-    for oriented_image in tile_orientations(image):
+    for oriented_image in tile_transforms(image):
         num_monster = count_pattern(oriented_image, monster)
         if num_monster > 0:
             break
