@@ -94,9 +94,14 @@ def cmd_dump(args):
     lines = inp.splitlines()
     if not lines:
         return
-    num_width = int(math.log10(len(lines))+1)
-    for row, line in enumerate(lines):
-        print(f'{row:>{num_width}}: {line}')
+
+    if args.line_numbers:
+        num_width = int(math.log10(len(lines))+1)
+        for row, line in enumerate(lines):
+            print(f'{row:>{num_width}}: {line}')
+    else:
+        for line in lines:
+            print(line)
 
 
 def cmd_test(args):
@@ -126,19 +131,21 @@ if __name__ == '__main__':
 
     parser_run = subparsers.add_parser('run', help='Run the solution')
     parser_run.add_argument('-f', '--force-fetch', action='store_true',
-        help='Forces the download of the input')
+            help='Forces the download of the input')
     parser_add_run_args(parser_run)
 
     parser_example = subparsers.add_parser('example',
-        help='Run the solution with example input')
+            help='Run the solution with example input')
     parser_add_run_args(parser_example)
 
     parser_dump = subparsers.add_parser('dump', help='Dump the input')
     parser_dump.add_argument('day', type=int)
     parser_dump.add_argument('-f', '--force-fetch', action='store_true',
-        help='Forces the download of the input')
+            help='Forces the download of the input')
     parser_dump.add_argument('-e', '--example', action='store_true',
             help='Dump the example')
+    parser_dump.add_argument('-l', '--line-numbers', action='store_true',
+            help='Print line numbers')
 
     parser_test = subparsers.add_parser('test', help='Run unittests')
     parser_test.add_argument('day', type=int)
